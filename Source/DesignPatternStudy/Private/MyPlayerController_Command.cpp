@@ -5,9 +5,14 @@
 
 #include "Command.h"
 #include "MyCharacter_command.h"
+#include "EnvironmentQuery/EnvQueryGenerator.h"
+#include "Kismet/GameplayStatics.h"
 
 void AMyPlayerController_Command::SetMyCharacter(AMyCharacter_command* MyCharacter_Command)
 {
+	TArray<AActor*> actors;
+	UGameplayStatics::GetAllActorsWithTag(GetWorld(), FName("CommandActor"), actors);
+	Actor = actors[0];
 	MyCharacter_ = MyCharacter_Command;
 	BindJumpMethod();
 	BindFireMethod();
@@ -32,8 +37,35 @@ Command* AMyPlayerController_Command::handleInput()
 	if(IsInputKeyDown(FKey(FName("G")))) return buttonG_;
 	if(IsInputKeyDown(FKey(FName("R")))) return buttonR_;
 
+	if(WasInputKeyJustPressed(FKey(FName("Up"))))
+	{
+		int destX = Actor->GetActorLocation().X + 100;
+		LatestMoveUnitCommand = new MoveUnitCommand(Actor, destX, Actor->GetActorLocation().Y);
+		if(GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Up"));
+		}
+		return LatestMoveUnitCommand;
+	}
+	if(WasInputKeyJustPressed(FKey(FName("Down"))))
+	{
+		int destX = Actor->GetActorLocation().X - 100;
+		LatestMoveUnitCommand = new MoveUnitCommand(Actor,destX, Actor->GetActorLocation().Y);
+		if(GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Down"));
+		}
+		return LatestMoveUnitCommand;
+	}
+	if(WasInputKeyJustPressed(FKey(FName("BackSpace"))))
+	{
+		LatestMoveUnitCommand->undo();
+		if(GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Back"));
+		}
+	}
 	return NULL;
-	
 }
 
 void AMyPlayerController_Command::BindJumpMethod()

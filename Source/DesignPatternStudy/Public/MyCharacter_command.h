@@ -16,7 +16,7 @@ public:
 	// Sets default values for this character's properties
 	AMyCharacter_command();
 	AMyPlayerController_Command* MyPlayerController_Command;
-	
+
 	void Jump();
 	void FireGun();
 	void SwapWeapon();

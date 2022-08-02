@@ -63,6 +63,7 @@ void AMyCharacter_command::Tick(float DeltaTime)
 	if (command)
 	{
 		command->execute(this); // 변경 가능한 Actor
+		command->execute();
 	}
 }
 

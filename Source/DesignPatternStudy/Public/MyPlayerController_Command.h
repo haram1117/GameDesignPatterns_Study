@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Command.h"
 #include "GameFramework/PlayerController.h"
 #include "MyPlayerController_Command.generated.h"
 
@@ -16,6 +17,8 @@ class DESIGNPATTERNSTUDY_API AMyPlayerController_Command : public APlayerControl
 {
 	GENERATED_BODY()
 	AMyCharacter_command* MyCharacter_;
+	AActor* Actor;
+	MoveUnitCommand* LatestMoveUnitCommand;
 	
 public:
 	void SetMyCharacter(AMyCharacter_command* MyCharacter_Command);
