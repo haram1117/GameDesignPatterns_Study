@@ -12,17 +12,14 @@ class DESIGNPATTERNSTUDY_API Subject
 public:
 	Subject();
 	~Subject();
-	void addObserver(Observer* Observer)
-	{
-		Observers.Add(Observer);
-	}
-	void removeObserver(Observer* Observer)
-	{
-		Observers.Remove(Observer);
-	}
+	void addObserver(Observer* Observer);
+	void removeObserver(Observer* observer_);
 	void Notify(const AActor* Actor, Event event);
 private:
-	TArray<Observer*> Observers;
+	// TArray<Observer*> Observers;
+
+	Observer* head_; // 첫째 노드
+	
 	Achievements* Achievements_;
 protected:
 };

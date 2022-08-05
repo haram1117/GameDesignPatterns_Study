@@ -17,9 +17,13 @@ enum Event
 
 class DESIGNPATTERNSTUDY_API Observer
 {
+	friend class Subject;
 public:
+	Observer(): next_(nullptr){}
 	virtual ~Observer();
 	virtual void onNotify(const AActor* Actor, Event event) = 0;
+private:
+	Observer* next_;
 };
 
 class Achievements : public Observer
