@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "World_Flyweight.h"
+#include "DesignPatternStudy/Public/2_FlyweightPattern/World_Flyweight.h"
 
 World_Flyweight::~World_Flyweight()
 {

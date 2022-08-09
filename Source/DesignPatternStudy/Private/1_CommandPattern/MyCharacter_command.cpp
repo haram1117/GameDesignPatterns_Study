@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyCharacter_command.h"
+#include "DesignPatternStudy/Public/1_CommandPattern/MyCharacter_command.h"
 
-#include "Command.h"
-#include "MyPlayerController_Command.h"
+#include "DesignPatternStudy/Public/1_CommandPattern/Command.h"
+#include "DesignPatternStudy/Public/1_CommandPattern/MyPlayerController_Command.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
